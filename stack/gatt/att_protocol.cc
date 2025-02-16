@@ -285,7 +285,6 @@ BT_HDR* attp_build_value_cmd(uint16_t payload_size, uint8_t op_code,
 #define CHECK_SIZE()                       \
   do {                                     \
     if (size_now > payload_size) {         \
-      LOG("payload size too small"); \
       osi_free(p_buf);                     \
       return nullptr;                      \
     }                                      \
@@ -341,7 +340,6 @@ BT_HDR* attp_build_value_cmd(uint16_t payload_size, uint8_t op_code,
   // backfill pair len field
   if (op_code == GATT_RSP_READ_BY_TYPE) {
     if (pair_len > UINT8_MAX) {
-      LOG("pair_len greater than %d", UINT8_MAX);
       osi_free(p_buf);
       return nullptr;
     }
